@@ -1,18 +1,16 @@
 import Vue from 'vue';
 import VueApollo from 'vue-apollo';
+import VueRouter from 'vue-router';
 import App from './App.vue';
-import { client } from './graphql';
-import Buefy from 'buefy';
+import { apolloProvider } from './graphql';
+import { router } from './router';
 
 Vue.use(VueApollo);
-Vue.use(Buefy);
-
-const apolloProvider = new VueApollo({
-    defaultClient: client,
-});
+Vue.use(VueRouter);
 
 new Vue({
     el: '#app',
     render: h => h(App),
     apolloProvider,
+    router,
 });
