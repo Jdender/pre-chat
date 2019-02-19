@@ -12,4 +12,8 @@ export class Message {
     @Column()
     @Field()
     content: string;
+
+    @Column()
+    @Field()
+    author: string;
 }

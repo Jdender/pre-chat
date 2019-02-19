@@ -8,6 +8,10 @@ export class MessageSendInput implements Partial<Message> {
     @Field()
     @Length(1, 100)
     content: string;
+
+    @Field()
+    @Length(1, 20)
+    author: string;
 }
 
 @ArgsType()
