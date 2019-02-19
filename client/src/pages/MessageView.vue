@@ -1,6 +1,12 @@
 <template>
     <div>
-        <router-link to="/send">Send message</router-link>
+        <router-link 
+            to="/send" 
+            class="button is-fullwidth has-text-centered
+            has-text-black-bis is-size-5"
+        >
+            Send message
+        </router-link>
 
         <ApolloQuery
             :query="messages"
@@ -23,7 +29,12 @@
                             v-for="msg of data.messages" 
                             :key="msg.id"
                         >
-                            {{msg.content}}
+                            <span class="has-text-black-bis is-size-5">
+                                {{msg.author || 'Guest'}} » 
+                            </span>
+                            <span class="has-text-grey-darker is-size-5">
+                                {{msg.content}}
+                            </span>
                         </li>
                     </ul>
                 </div>
@@ -45,6 +56,10 @@ ul {
     list-style-type: none;
     width: 50%;
     margin: auto;
+}
+
+li {
+    margin: 2%;
 }
 </style>
 
