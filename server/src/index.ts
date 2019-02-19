@@ -28,6 +28,7 @@ void async function() {
     const server = new ApolloServer({ 
         schema,
         playground: true,
+        subscriptions: '/',
     });
     
     const { url } = await server.listen(8080);

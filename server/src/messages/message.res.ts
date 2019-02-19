@@ -1,4 +1,4 @@
-import { Resolver, Mutation, Arg, Query, Args } from 'type-graphql';
+import { Resolver, Mutation, Arg, Query, Args, Subscription, Root, PubSub, PubSubEngine, Publisher } from 'type-graphql';
 import { InjectRepository } from 'typeorm-typedi-extensions';
 import { Message } from './Message.ent';
 import { Repository } from 'typeorm';
@@ -21,13 +21,27 @@ export class MessageResolver {
     }
 
     @Mutation(returns => Message)
-    sendMessage(
+    async sendMessage(
         @Arg('data') newData: MessageSendInput,
+        @PubSub('NEW_MESSAGE') publish: Publisher<Message>,
     ) {
         const newMessage = this.messageRepo.create(newData);
 
-        const message = this.messageRepo.save(newMessage);
+        const message = await this.messageRepo.save(newMessage);
+        
+        await publish(message);
 
+        return message;
+    }
+
+    @Subscription(
+        returns => Message,
+    {
+        topics: 'NEW_MESSAGE',
+    })
+    newMessage(
+        @Root() message: Message,
+    ) {
         return message;
     }
 }
