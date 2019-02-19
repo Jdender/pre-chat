@@ -1,7 +1,7 @@
 <template>
     <div>
         <router-link 
-            to="/send" 
+            to="send" 
             class="button is-fullwidth has-text-centered
             has-text-black-bis is-size-5"
         >
@@ -29,10 +29,10 @@
                             v-for="msg of data.messages" 
                             :key="msg.id"
                         >
-                            <span class="has-text-black-bis is-size-5">
+                            <span class="has-text-grey-darker is-size-5">
                                 {{msg.author || 'Guest'}} » 
                             </span>
-                            <span class="has-text-grey-darker is-size-5">
+                            <span class="has-text-black-bis has-text-weight-bold is-size-5">
                                 {{msg.content}}
                             </span>
                         </li>
@@ -78,6 +78,7 @@ export default Vue.extend({
                     messages(skip: $skip, take: $take) {
                         id
                         content
+                        author
                     }
                 }
             `,
@@ -87,6 +88,7 @@ export default Vue.extend({
                     newMessage {
                         id
                         content
+                        author
                     }
                 }
             `,
