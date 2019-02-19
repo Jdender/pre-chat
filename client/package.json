@@ -6,11 +6,17 @@
   "author": "Jdender~ <jdenderplays@gmail.com>",
   "license": "AGPL-3.0",
   "private": true,
+  "scripts": {
+    "up": "parcel src/index.html --port 8081"
+  },
   "dependencies": {
     "vue": "^2.6.6"
   },
   "devDependencies": {
+    "@vue/component-compiler-utils": "^2.5.2",
     "parcel-bundler": "^1.11.0",
-    "typescript": "^3.3.3"
+    "typescript": "^3.3.3",
+    "vue-hot-reload-api": "^2.3.2",
+    "vue-template-compiler": "^2.6.6"
   }
 }
