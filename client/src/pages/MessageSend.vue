@@ -1,25 +1,25 @@
 <template>
-    <div>
-        <input
-            type="button"
+    <div class="columns is-multiline">
+        <button
             v-for="(pre, key) of premade"
-            :value="pre"
             :key="key"
             @click="sendMessage(key)"
+
+            class="button column has-text-centered
+            has-text-black-bis is-size-5"
         >
-        <input 
-            type="text"
+            {{pre}}
+        </button>
+
+        <textarea
             v-model="workingMessage"
             @keyup.enter="sendMessage()"
-        />
+
+            placeholder="Type a custom message..."
+            class="textarea column"
+        ></textarea>
     </div>
 </template>
-
-<style scoped>
-input {
-    padding: 1%;
-}
-</style>
 
 <script lang="ts">
 import Vue from 'vue';
@@ -51,7 +51,7 @@ export default Vue.extend({
 
         sendMessage(index?: number) {
 
-            const content = index
+            const content = typeof index === 'number'
             ? this.premade[index]
             : this.workingMessage;
 
