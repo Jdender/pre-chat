@@ -15,6 +15,9 @@ export class MessageResolver {
         @Args() { skip, take }: MessageHistoryArgs
     ) {
         return this.messageRepo.find({
+            order: {
+                id: 'DESC',
+            },
             skip,
             take,
         });
