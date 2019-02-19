@@ -10,7 +10,18 @@
     "up": "parcel src/index.html --port 8081"
   },
   "dependencies": {
-    "vue": "^2.6.6"
+    "apollo-cache-inmemory": "^1.4.3",
+    "apollo-client": "^2.4.13",
+    "apollo-link": "^1.2.8",
+    "apollo-link-error": "^1.1.7",
+    "apollo-link-http": "^1.5.11",
+    "apollo-link-ws": "^1.0.14",
+    "buefy": "^0.7.2",
+    "graphql": "^14.1.1",
+    "graphql-tag": "^2.10.1",
+    "subscriptions-transport-ws": "^0.9.15",
+    "vue": "^2.6.6",
+    "vue-apollo": "^3.0.0-beta.28"
   },
   "devDependencies": {
     "@vue/component-compiler-utils": "^2.5.2",
