@@ -6,6 +6,7 @@ import { ApolloLink } from 'apollo-link';
 import { WebSocketLink } from 'apollo-link-ws';
 import { split } from 'apollo-link';
 import { getMainDefinition } from 'apollo-utilities';
+import VueApollo from 'vue-apollo';
 
 // Good ol' error handler
 const errorLink = onError(({ graphQLErrors, networkError }) => {
@@ -48,7 +49,11 @@ const link = ApolloLink.from([
     splitLink,
 ]);
 
-export const client = new ApolloClient({
+const client = new ApolloClient({
     link,
     cache: new InMemoryCache()
+});
+
+export const apolloProvider = new VueApollo({
+    defaultClient: client,
 });
