@@ -1,3 +1,53 @@
 <template>
-    <h1>Hello world</h1>
+    <div>
+        <input 
+            type="text"
+            @keyup.enter="sendWorkingMessage"
+            v-model="workingMessage"
+        />
+        <ul>
+            <li v-for="(msg, key) of messages" :key="key">{{msg}}</li>
+        </ul>
+    </div>
 </template>
+
+<script lang="ts">
+import Vue from 'vue';
+
+export default Vue.extend({
+
+    data() {
+        return {
+            workingMessage: '',
+            premade: [
+                'Can you turn down the piano?',
+                'Can you turn up the piano?',
+            ],
+            messages: [
+                'test',
+                'one',
+                'two',
+                'three',
+            ]
+        };
+    },
+
+    methods: {
+
+        sendWorkingMessage() {
+
+            this.sendMessage(this.workingMessage);
+
+            this.workingMessage = '';
+        },
+
+        sendPreMessage() {
+
+        },
+
+        sendMessage(content: string) {
+            this.messages.push(content);
+        }
+    },
+});
+</script>
