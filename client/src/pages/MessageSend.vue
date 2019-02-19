@@ -1,23 +1,23 @@
 <template>
     <div class="columns is-multiline">
-        <button
+        <input
+            type="button"
             v-for="(pre, key) of premade"
             :key="key"
+            :value="pre"
             @click="sendMessage(key)"
 
             class="button column has-text-centered
             has-text-black-bis is-size-5"
-        >
-            {{pre}}
-        </button>
-
-        <textarea
+        />
+        <input
+            type="text"
             v-model="workingMessage"
             @keyup.enter="sendMessage()"
 
             placeholder="Type a custom message..."
-            class="textarea column"
-        ></textarea>
+            class="input column"
+        />
     </div>
 </template>
 
@@ -62,20 +62,20 @@ export default Vue.extend({
                     mutation($data: MessageSendInput!) {
                         sendMessage(data: $data) {
                             id
-                            content
                         }
                     }
                 `,
                 variables: {
                     data: {
                         content,
+                        author: this.$route.params.name,
                     },
                 },
             });
 
             this.workingMessage = '';
 
-            this.$router.push('/view');
+            this.$router.push('view');
         },
     },
 });
