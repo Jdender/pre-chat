@@ -2,10 +2,15 @@
     <router-view></router-view>
 </template>
 
-<style>
-body {
-    font-family: 'Helvetica', 'Arial', sans-serif;
-    background-color: rgba(114,118,125,.3);
+<style lang="scss">
+@import '../node_modules/bulma/bulma.sass';
+
+html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+
+    background-color: hsl(0, 0%, 86%);   
 }
 </style>
 
