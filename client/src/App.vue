@@ -20,8 +20,14 @@ export default Vue.extend({
         return {
             workingMessage: '',
             premade: [
-                'Can you turn down the piano?',
-                'Can you turn up the piano?',
+                'Can you turn down the Piano?',
+                'Can you turn up the Piano?',
+                'Can you turn down the Drums?',
+                'Can you turn up the Drums?',
+                'The Bass is too loud.',
+                'The Bass is too quiet.',
+                'The Vocals are too loud.',
+                'The Vocals are too soft.',
             ],
             messages: [
                 'test',
