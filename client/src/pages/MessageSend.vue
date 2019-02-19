@@ -25,10 +25,11 @@ input {
 import Vue from 'vue';
 import gql from 'graphql-tag';
 import 'vue-apollo';
+import 'vue-router';
 
 export default Vue.extend({
 
-    name: 'Send',
+    name: 'MessageSend',
 
     data() {
         return {
@@ -42,12 +43,6 @@ export default Vue.extend({
                 'The Bass is too quiet.',
                 'The Vocals are too loud.',
                 'The Vocals are too soft.',
-            ],
-            messages: [
-                'test',
-                'one',
-                'two',
-                'three',
             ],
         };
     },
@@ -79,6 +74,8 @@ export default Vue.extend({
             });
 
             this.workingMessage = '';
+
+            this.$router.push('/view');
         },
     },
 });
