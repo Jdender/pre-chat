@@ -8,7 +8,7 @@
   "private": true,
   "scripts": {
     "up": "parcel src/index.html --port 8081",
-    "prod": "superstatic",
+    "prod": "servor ./dist index.html 80",
     "build": "parcel build src/index.html"
   },
   "dependencies": {
@@ -21,8 +21,8 @@
     "bulma": "^0.7.4",
     "graphql": "^14.1.1",
     "graphql-tag": "^2.10.1",
+    "servor": "^2.0.3",
     "subscriptions-transport-ws": "^0.9.15",
-    "superstatic": "^6.0.4",
     "vue": "^2.6.6",
     "vue-apollo": "^3.0.0-beta.28",
     "vue-router": "^3.0.2"
