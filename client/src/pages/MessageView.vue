@@ -29,8 +29,8 @@
                             v-for="msg of data.messages" 
                             :key="msg.id"
                         >
-                            <div v-if="msg.author === $route.params.name">
-                                <span class="has-text-black-bis is-size-5">
+                            <div v-if="msg.author === $route.params.name" class="has-text-right">
+                                <span class="has-text-black-bis has-text-weight-bold is-size-5">
                                     {{msg.content}}
                                 </span>
                                 <span class="has-text-grey-darker is-size-5">
@@ -42,7 +42,7 @@
                                 <span class="has-text-grey-darker is-size-5">
                                     {{msg.author || 'Guest'}} » 
                                 </span>
-                                <span class="has-text-black-bis has-text-weight-bold is-size-5">
+                                <span class="has-text-black-bis has-text-weight-bold is-italic is-size-5">
                                     {{msg.content}}
                                 </span>
                             </div>
