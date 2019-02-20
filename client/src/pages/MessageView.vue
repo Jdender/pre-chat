@@ -29,12 +29,23 @@
                             v-for="msg of data.messages" 
                             :key="msg.id"
                         >
-                            <span class="has-text-grey-darker is-size-5">
-                                {{msg.author || 'Guest'}} » 
-                            </span>
-                            <span class="has-text-black-bis has-text-weight-bold is-size-5">
-                                {{msg.content}}
-                            </span>
+                            <div v-if="msg.author === $route.params.name">
+                                <span class="has-text-black-bis is-size-5">
+                                    {{msg.content}}
+                                </span>
+                                <span class="has-text-grey-darker is-size-5">
+                                    « {{msg.author || 'Guest'}}
+                                </span>
+                            </div>
+
+                            <div v-else>
+                                <span class="has-text-grey-darker is-size-5">
+                                    {{msg.author || 'Guest'}} » 
+                                </span>
+                                <span class="has-text-black-bis has-text-weight-bold is-size-5">
+                                    {{msg.content}}
+                                </span>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -51,7 +62,6 @@
 
         <ApolloMutation
             :mutation="clearMessages"
-            @done="onClearDone"
         >
         <template slot-scope="{ mutate, loading, error }">
                 <button 
@@ -86,6 +96,7 @@ li {
 import Vue from 'vue';
 import gql from 'graphql-tag';
 import 'vue-router';
+import 'vue-apollo';
 
 declare const window: any;
 
@@ -137,10 +148,21 @@ export default Vue.extend({
 
             return newResult;
         },
+    },
+    apollo: {
+        $subscribe: {
+            messagesCleared: {
 
-        onClearDone() {
+                query: gql`
+                    subscription {
+                        messagesCleared
+                    }
+                `,
 
-            window.location.reload(false);
+                result() {
+                    window.location.reload(false);
+                },
+            },
         },
     },
 });
