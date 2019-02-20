@@ -24,13 +24,25 @@ export class MessageResolver {
     }
 
     @Mutation(returns => Boolean)
-    async clearMessages() {
+    async clearMessages(
+        @PubSub('MESSAGES_CLEARED') cleared: Publisher<void>,
+    ) {
         try {
             await this.messageRepo.clear();
+            cleared();
             return true;
         } catch {
             return false;
         }
+    }
+
+    @Subscription(
+        returns => Boolean, 
+    {
+        topics: 'MESSAGES_CLEARED',
+    })
+    messagesCleared() {
+        return true;
     }
 
     @Mutation(returns => Message)
