@@ -23,6 +23,16 @@ export class MessageResolver {
         });
     }
 
+    @Mutation(returns => Boolean)
+    async clearMessages() {
+        try {
+            await this.messageRepo.clear();
+            return true;
+        } catch {
+            return false;
+        }
+    }
+
     @Mutation(returns => Message)
     async sendMessage(
         @Arg('data') newData: MessageSendInput,
