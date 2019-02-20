@@ -8,6 +8,9 @@ import { split } from 'apollo-link';
 import { getMainDefinition } from 'apollo-utilities';
 import VueApollo from 'vue-apollo';
 
+const HTTP_URL = 'http://localhost:8080';
+const WS_URL = 'ws://localhost:808';
+
 // Good ol' error handler
 const errorLink = onError(({ graphQLErrors, networkError }) => {
 
@@ -22,12 +25,12 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 
 // Everything else
 const httpLink = new HttpLink({
-    uri: process.env.HTTP_URL,
+    uri: HTTP_URL,
 });
 
 // Subscriptions
 const wsLink = new WebSocketLink({
-    uri: process.env.WS_URL!,
+    uri: WS_URL,
     options: {
         reconnect: true,
     },
