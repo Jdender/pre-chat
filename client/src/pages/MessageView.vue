@@ -48,6 +48,25 @@
                 :updateQuery="onMessageAdded"
             />
         </ApolloQuery>
+
+        <ApolloMutation
+            :mutation="clearMessages"
+            @done="onClearDone"
+        >
+        <template slot-scope="{ mutate, loading, error }">
+                <button 
+                    :disabled="loading" 
+                    @click="mutate()"
+
+                    class="button is-fullwidth has-text-centered
+                    has-text-black-bis is-size-5"
+                >
+                    Clear messages
+                </button>
+
+                <p v-if="error">An error occured: {{ error }}</p>
+        </template>
+        </ApolloMutation>
     <div>
 </template>
 
@@ -66,6 +85,9 @@ li {
 <script lang="ts">
 import Vue from 'vue';
 import gql from 'graphql-tag';
+import 'vue-router';
+
+declare const window: any;
 
 export default Vue.extend({
 
@@ -92,6 +114,12 @@ export default Vue.extend({
                     }
                 }
             `,
+
+            clearMessages: gql`
+                mutation {
+                    clearMessages
+                }
+            `,
         };
     },
 
@@ -108,6 +136,11 @@ export default Vue.extend({
             newResult.messages.unshift(subscriptionData.data.newMessage);
 
             return newResult;
+        },
+
+        onClearDone() {
+
+            window.location.reload(false);
         },
     },
 });
