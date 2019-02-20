@@ -22,12 +22,12 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 
 // Everything else
 const httpLink = new HttpLink({
-    uri: 'http://localhost:8080',
+    uri: process.env.HTTP_URL,
 });
 
 // Subscriptions
 const wsLink = new WebSocketLink({
-    uri: 'ws://localhost:8080',
+    uri: process.env.WS_URL!,
     options: {
         reconnect: true,
     },
