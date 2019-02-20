@@ -8,8 +8,10 @@ import { split } from 'apollo-link';
 import { getMainDefinition } from 'apollo-utilities';
 import VueApollo from 'vue-apollo';
 
-const HTTP_URL = 'http://localhost:8080';
-const WS_URL = 'ws://localhost:808';
+const PROD = true;
+
+const HTTP_URL = PROD ? 'http://calamus.ddns.net:8080' : 'http://localhost:8080';
+const WS_URL = PROD ? 'ws://calamus.ddns.net:8080' : 'ws://localhost:8080';
 
 // Good ol' error handler
 const errorLink = onError(({ graphQLErrors, networkError }) => {
